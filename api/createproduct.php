@@ -17,6 +17,8 @@ if(!empty($location) && !empty($price) &&
     $vendorrow= pg_query($db,"select * from vendors order by id desc");
     $vendorarray=pg_fetch_array($vendorrow);
     $vendor_id=$vendorarray['id'];
+    echo "$vendor_id";
+    exit();
 
     $cylindertyrow= pg_query($db,"select * from cylindertype order by id desc");
     $cylindertyarray=pg_fetch_array($cylindertyrow);
