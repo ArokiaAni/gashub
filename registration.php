@@ -127,6 +127,12 @@
 </div>
 
 <div class="card-body">
+<section>
+<div style="margin-left:auto;">
+   <label style="color: #0054A8;" for="">SEARCH :</label>
+<input id="myInput" type="text" placeholder="Search..">
+</div>
+</section>
 <table id="example2" class="table table-bordered table-hover">
 <thead>
 <tr>
@@ -143,7 +149,7 @@
 <th>Action</th>
 </tr>
 </thead>
-<tbody>
+<tbody id="myTable">
 <?php
 
 $user=pg_query($db,"SELECT id,firstname,lastname,phone,email,gender,dateofbirth,status,createdby,createdat,updatedat,updatedby,password FROM users WHERE status=1");
@@ -412,9 +418,10 @@ if($row['createdby']==1)
 </div>
 
 </section>
-<script src="plugins/jquery/jquery.min.js"></script>
-
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="plugins/jquery/jquery.min.js"></script>
+ -->
+ <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script> -->
+ <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="plugins/jszip/jszip.min.js"></script>
 <script src="plugins/pdfmake/pdfmake.min.js"></script>
 <script src="plugins/pdfmake/vfs_fonts.js"></script>
@@ -425,6 +432,18 @@ if($row['createdby']==1)
 <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 
 <script src="plugins/toastr/toastr.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 <script>
   $(function () {
     
@@ -710,10 +729,3 @@ if($row['createdby']==1)
           
   }
 </script>
-
-
-
-
-
-
-  
